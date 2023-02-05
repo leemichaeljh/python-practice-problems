@@ -13,7 +13,10 @@ def find_closest_value(x):
     
     # YOUR CODE HERE
     # Replace None with an appropriate return value
-    return None
+    ave = x.mean()
+    differences = abs(x - ave)
+    min_index = np.argmin(differences)
+    return (min_index, x[min_index])
     
 
 #############################################################

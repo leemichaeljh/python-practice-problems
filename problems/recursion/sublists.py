@@ -6,9 +6,18 @@ def sublists(lst):
     
     Returns: (list of list of values) list of all sublists of lst.
     """
-
-    pass
-
+    all_lists = []
+    if not lst:
+        return [[]]
+    
+    # if len(lst) == 1:
+    #     return [lst, []]
+    
+    for rec_list in sublists(lst[1:]):
+        all_lists.append([lst[0]] + rec_list)
+        all_lists.append(rec_list)
+    
+    return all_lists
 
 #############################################################
 ###                                                       ###

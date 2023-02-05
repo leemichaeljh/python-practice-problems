@@ -11,7 +11,12 @@ def select_row_col(x, row_idx=None, col_idx=None):
 
     # YOUR CODE HERE
     # Replace None with an appropriate return value
-    return None
+    new_x = x
+    if row_idx is not None:
+        new_x = new_x[row_idx]
+    if col_idx is not None:
+        new_x = new_x[:, col_idx]
+    return new_x
 
 
 #############################################################
