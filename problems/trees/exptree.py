@@ -14,7 +14,6 @@ class Int:
     def __str__(self):
         return str(self.n)
 
-
 class Plus:
     def __init__(self, op1, op2):
         self.op1 = op1
@@ -62,6 +61,74 @@ class Times:
 
         return f"({op1_str} * {op2_str})"
 
+class Minus:
+    def __init__(self, op1, op2):
+        self.op1 = op1
+        self.op2 = op2
+
+    def is_const(self):
+        return False
+
+    def num_nodes(self):
+        return 1 + self.op1.num_nodes() + self.op2.num_nodes()
+
+    def eval(self):
+        op1_value = self.op1.eval()
+        op2_value = self.op2.eval()
+
+        return op1_value - op2_value
+
+    def __str__(self):
+        op1_str = str(self.op1)
+        op2_str = str(self.op2)
+
+        return f"({op1_str} - {op2_str})"
+
+class Divide:
+    def __init__(self, op1, op2):
+        if op2 == 0:
+            raise ValueError
+        self.op1 = op1
+        self.op2 = op2
+
+    def is_const(self):
+        return False
+
+    def num_nodes(self):
+        return 1 + self.op1.num_nodes() + self.op2.num_nodes()
+
+    def eval(self):
+        op1_value = self.op1.eval()
+        op2_value = self.op2.eval()
+
+        return op1_value // op2_value
+
+    def __str__(self):
+        op1_str = str(self.op1)
+        op2_str = str(self.op2)
+
+        return f"({op1_str} // {op2_str})"
+    
+class Abs:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def is_const(self):
+        return False
+
+    def num_nodes(self):
+        return 1 + self.op1.num_nodes()
+
+    def eval(self):
+        op1_value = self.op1.eval()
+        if op1_value < 0:
+            return - op1_value
+        return op1_value 
+
+    def __str__(self):
+        op1_str = str(self.op1)
+
+        return f"(|{op1_str}|)"
 
 if __name__ == "__main__":
 
